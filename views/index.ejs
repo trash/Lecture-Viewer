@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
+    <link rel="stylesheet" href="/stylesheets/jquery.sbscroller.css" />
+
+    <script type="text/javascript" src="/javascripts/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/popcorn-complete.min.js"></script>
+    <script type="text/javascript" src="/javascript/jquery.sbscroller.js"></script>
+    <script type="text/javascript" src="/javascript/jquery.mousewheel.min.3.0.6.js"></script>
+  	<script type="text/javascript" src="/javascripts/base.js"></script>
+    <style>
+      .wboard { padding: 5px; }
+      #slide {
+        left: 680px;
+        position: relative;
+        top: -840px;
+      }
+      #wboard {
+        left: 440px;
+        position: relative;
+        top: -600px;
+      }
+    </style>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <div id="images" class="">
+        </div>
+      </div>
+      <div class="span8">
+        <div class="navbar navbar-fixed-top" style="position: absolute;">
+          <div class="navbar-inner">
+            <div class="container" style="width: auto; padding: 0 20px;">
+              <a class="brand" href="#">Lecture Viewer</a>
+              <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Settings
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                    <li class="dropdown-submenu">
+                      <a tabindex="-1" href="#">Video Resolution</a>
+                      <ul class="dropdown-menu">
+                        <li><a id="lowRes" tabindex="-1" href="#">320x240</a></li>
+                        <li><a id="midRes" tabindex="-1" href="#">640x480</a></li>
+                        <li><a id="highRes" tabindex="-1" href="#">800x600</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <!--li><a href="#">Link</a></li-->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <video width="640" height="480" id="video" controls> 
+          <source src="/video/video.ogv"></source>
+          <source src="/video/video.mp4"></source>
+        </video>
+
+        <textarea rows="8" style="width: 620px;"  name="text" placeholder="Text here"></textarea></br>
+
+        <a href="javascript:void(0)" rel="tooltip" id="synbutton" data-original-title="DO THINGS" class="btn btn-primary" type="button">BUTTON<i class="icon-fire"></i></a>
+        </br></br>
+        <div class="well well-large">
+          <div id="test1"></div>
+          <div id="test2"></div>
+        </div>
+
+        <img id="slide" src="" height="180" width="300"/>
+        <img id="wboard" src="" height="102" width="170"/>
+      </div>
+    </div>
+    </div>
+    <footer>
+      <div class="container">
+        <p><a href="http://jsfiddle.net/89XTM/1/">Fiddle of what this is supposed to do.</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
