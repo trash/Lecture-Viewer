@@ -60,6 +60,19 @@ $(function(){
         $("video").attr("height",600);
     });
 
+    $("#slowRes").click(function(){
+        $("#slide").attr("width",320);
+        $("#slide").attr("height",240);
+    });
+    $("#smidRes").click(function(){
+        $("#slide").attr("width",640);
+        $("#slide").attr("height",480);
+    });
+    $("#shighRes").click(function(){
+        $("#slide").attr("width",800);
+        $("#slide").attr("height",600);
+    });
+
     var $pop = Popcorn("#video");
     $("#video").draggable({ grid: [ 80, 80 ] });
     $("#slide").draggable({ grid: [ 40, 40 ] });
