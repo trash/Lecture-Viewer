@@ -1,6 +1,6 @@
 ##Install
 * Fork the repo
-* Throw videos (preferably a lecture) in the public/video directory named:
+* ( **Optionally** ) Throw videos (preferably a lecture) in the public/video directory named:
   * /video/video.ogv
   * /video/video.mp4
 * Then run
