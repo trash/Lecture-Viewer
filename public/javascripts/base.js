@@ -40,18 +40,11 @@ var wboard = {
 $(function(){
     $("a[rel=popover]").popover();
     $("a[rel=tooltip]").tooltip();
-    $("#synbutton").click(function(event){
-        //var syntext = $("#syntext").val();
-        $("#syntext").val("poop");
-       $.ajax({
-            url: "http://api.wordnik.com//v4/words.json/wordOfTheDay",
-            type: "GET",
-            headers: {"api_key":"6b9b94e5a634aae65b002089753099f69b70609acd44ce6cd"}
-        }).done(function(){
-            alert("SOMETHING");
-        }).fail(function(jqXHR, textStatus) {
-            alert( "Request failed: " + textStatus );
-        });
+
+    $("#textbutton").click(function(){
+        var text = $("#text").val();
+        console.log(text);
+        $("#output").html('<p>Text Input: ' + text + '</p>');
     });
 
     $("#lowRes").click(function(){
@@ -70,18 +63,7 @@ $(function(){
     var $pop = Popcorn("#video");
     $("#video").draggable({ grid: [ 80, 80 ] });
     $("#slide").draggable({ grid: [ 40, 40 ] });
-    $("#wboard").draggable({ grid: [ 40, 40 ] });/*{ //must synchronize with tooltips
-        start: function (){
-            $("#wboard").unwrap();
-            console.log("WHAT A DRAG!");
-        },
-        stop: function (){
-            $("#wboard").wrap('<a href="javascript:void(0)" id="wboardTooltip" data-target="#wboard" rel="tooltip" data-placement="top" data-original-title="Whiteboard Slide"/>');
-            $("a[rel=tooltip]").tooltip();
-        }
-    });
-    $("#wboard").wrap('<a href="javascript:void(0)" id="wboardTooltip" data-target="#wboard" rel="tooltip" data-placement="top" data-original-title="Whiteboard Slide"/>');
-    $("a[rel=tooltip]").tooltip(); //Use this to specify slide number*/
+    $("#wboard").draggable({ grid: [ 40, 40 ] });
 
     if(slides[0]){
         var slide = '/images/slides/' + slides[0];
