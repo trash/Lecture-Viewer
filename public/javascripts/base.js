@@ -78,6 +78,52 @@ $(function(){
     $("#slide").draggable({ grid: [ 40, 40 ] });
     $("#wboard").draggable({ grid: [ 40, 40 ] });
 
+    var lastswitch = 0;
+    $('#slide').click(function(event) {
+        console.log('clicked big slide');
+        $('#video').animate({
+            top: $('.item1:eq(1)').css('top'),
+            left: $('.item1:eq(1)').css('left')
+        }, 500);
+
+        $('#slide').animate({
+            top: $('.item1:eq(0)').css('top'),
+            left: $('.item1:eq(0)').css('left')
+        }, 500);
+        lastswitch = 1;
+    });
+
+    $('#wboard').click(function(event) {
+        console.log('clicked big board');
+        $('#video').animate({
+            top: $('.item2:eq(1)').css('top'),
+            left: $('.item2:eq(1)').css('left')
+        }, 500);
+
+        $('#wboard').animate({
+            top: $('.item2:eq(0)').css('top'),
+            left: $('.item2:eq(0)').css('left')
+        }, 500);
+        lastswitch = 2;
+    });
+
+    $('#video').click(function(event) {
+        $('#video').animate({
+            top: $('.item'+lastswitch+':eq(1)').css('top'),
+            left: $('.item'+lastswitch+':eq(1)').css('left')
+        }, 500);
+
+        var boardorslide = '';
+        if(lastswitch==1)
+            boardorslide='slide';
+        else
+            boardorslide='wboard';
+        $('#'+boardorslide).animate({
+            top: $('.item'+lastswitch+':eq(0)').css('top'),
+            left: $('.item'+lastswitch+':eq(0)').css('left')
+        }, 500);
+    });
+
     if(slides[0]){
         var slide = '/images/slides/' + slides[0];
         $( "#slide" ).attr('src', slide);
