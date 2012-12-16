@@ -130,7 +130,7 @@ $(function(){
     });
 
     if(slides[0]){
-        var slide = '/images/slides/' + slides[0];
+        var slide = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/scr/' + slides[0];
         $( "#slide" ).attr('src', slide);
     }
     if(wboard[0]){
@@ -139,7 +139,7 @@ $(function(){
         $( "#wboard" ).attr('src', wb);
     }
     for (var key in wboard){ //generate the sidebar of wboard slides
-        $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ '/images/wbl/thumbs/' + wboard[key] +'" height="300" width="180"/></div>')
+        $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'" height="300" width="180"/></div>')
     };
     $(".wboard").wrap('<a href="javascript:void(0) class="wboardLink" />');//attach the wboard class to the sidebar slides
     //When a wboard image is selected, we update the rest of the content so that it is synced
@@ -157,7 +157,7 @@ $(function(){
         };
         console.log("temp: " + temp);
         if(temp != 0){
-            var slide = '/images/slides/' + slides[temp];
+            var slide = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/scr/' + slides[temp];
             $( "#slide" ).attr('src', slide);
         };
 
@@ -188,7 +188,7 @@ $(function(){
         else
             //$( "#test2" ).append("<p>Note: No note for this timestamp.</p>");
         if (slides[data.count]){
-            var slide = '/images/slides/' + slides[data.count];
+            var slide = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/scr/' + slides[data.count];
             $( "#slide" ).attr('src', slide);
         }
         if (wboard[data.count]){
