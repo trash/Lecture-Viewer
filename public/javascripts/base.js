@@ -13,6 +13,8 @@ var pictures = {
     5: "http://i.imgur.com/puS8V.gif"
 };
 
+//lists of the content being displayed, this is used to grab the images from either a local dir or remotely
+//time: filename
 var slides = {
     00000: 'slide0001.png',
     00004: 'slide0002.png',
@@ -42,12 +44,14 @@ $(function(){
     $("a[rel=popover]").popover();
     $("a[rel=tooltip]").tooltip();
 
+    //When Post button is clicked, append the note typed
     $("#textbutton").click(function(){
         var text = $("#text").val();
         console.log(text);
         $("#test2").append('<p>@ '+ parseInt($pop.currentTime()) +'(s): ' + text + '</p>');
     });
 
+    //Settings resolution change buttons
     $("#lowRes").click(function(){
         $("video").attr("width",320);
         $("video").attr("height",240);
@@ -138,6 +142,7 @@ $(function(){
         $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ '/images/wbl/thumbs/' + wboard[key] +'" height="300" width="180"/></div>')
     };
     $(".wboard").wrap('<a href="javascript:void(0) class="wboardLink" />');//attach the wboard class to the sidebar slides
+    //When a wboard image is selected, we update the rest of the content so that it is synced
     $(".wboard").click(function(event){
         console.log("Clicked a wboard image!");
         console.log(this.src);
@@ -158,6 +163,7 @@ $(function(){
 
     });
 
+    //trigger a custom event on time interval updates
     $pop.on( "timeupdate", function() {
         //keep track every time a second passes
         if ( Math.abs(this.currentTime() - pastTime) > 1 ) {
@@ -170,7 +176,7 @@ $(function(){
         }
     });
 
-    // listen for custom listener
+    // listen for custom event and update content
     $pop.on( "secondInterval", function( data ) {
         //var output = "Wow, it's already been " + data.count +  " second(s) since the video began!";
         //console.log( "A second has passed!" );
