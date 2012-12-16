@@ -4,7 +4,8 @@ var notes = {
     1: "This note corresponds to second 1.",
     3: "I'm all about second 3.",
     4: "What's good, second 4?",
-    5: "Second 5 is the best!"
+    5: "Second 5 is the best!",
+    20: "This application sure is great!"
 };
 var pictures = {
     1: "http://i.imgur.com/ALPTa.gif",
@@ -44,7 +45,7 @@ $(function(){
     $("#textbutton").click(function(){
         var text = $("#text").val();
         console.log(text);
-        $("#output").html('<p>Text Input: ' + text + '</p>');
+        $("#test2").append('<p>@ '+ parseInt($pop.currentTime()) +'(s): ' + text + '</p>');
     });
 
     $("#lowRes").click(function(){
@@ -129,11 +130,12 @@ $(function(){
         $( "#slide" ).attr('src', slide);
     }
     if(wboard[0]){
-        var wb = '/images/wbl/' + wboard[0];
+        //var wb = '/images/wbl/' + wboard[0]; //local
+        var wb = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/' + wboard[0]; //remote
         $( "#wboard" ).attr('src', wb);
     }
     for (var key in wboard){ //generate the sidebar of wboard slides
-        $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ '/images/wbl/thumbs/' + wboard[key] +'" height="102" width="170"/></div>')
+        $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ '/images/wbl/thumbs/' + wboard[key] +'" height="300" width="180"/></div>')
     };
     $(".wboard").wrap('<a href="javascript:void(0) class="wboardLink" />');//attach the wboard class to the sidebar slides
     $(".wboard").click(function(event){
@@ -170,21 +172,22 @@ $(function(){
 
     // listen for custom listener
     $pop.on( "secondInterval", function( data ) {
-        var output = "Wow, it's already been " + data.count +  " second(s) since the video began!";
-        console.log( "A second has passed!" );
-        console.log( "name: ", data.name );
-        console.log( "currentTime(): ", data.count );
+        //var output = "Wow, it's already been " + data.count +  " second(s) since the video began!";
+        //console.log( "A second has passed!" );
+        //console.log( "name: ", data.name );
+        //console.log( "currentTime(): ", data.count );
         $( "#test1" ).html(output);
         if (notes[data.count])
-            $( "#test2" ).html('<p>Note: ' + notes[data.count] + '</p>');
+            $( "#test2" ).append('<p>@ ' + data.count + '(s): ' + notes[data.count] + '</p>');
         else
-            $( "#test2" ).html("<p>Note: No note for this timestamp, I guess.</p>");
+            //$( "#test2" ).append("<p>Note: No note for this timestamp.</p>");
         if (slides[data.count]){
             var slide = '/images/slides/' + slides[data.count];
             $( "#slide" ).attr('src', slide);
         }
         if (wboard[data.count]){
-            var wb = '/images/wbl/' + wboard[data.count];
+            //var wb = '/images/wbl/' + wboard[data.count];
+            var wb = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/' + wboard[data.count];
             $( "#wboard" ).attr('src', wb);
         }       
     });
