@@ -31,7 +31,7 @@
   </style>
 </head>
 <body>
-  <div class="navbar navbar-fixed-top" style="position: absolute;">
+  <div id="navbar" class="navbar navbar-fixed-top" style="position: absolute;">
     <div class="navbar-inner">
       <div class="container" style="width: auto; padding: 0 20px;">
         <a class="brand" href="#">Lecture Viewer</a>
@@ -48,6 +48,7 @@
                 <ul class="dropdown-menu">
                   <li><a id="lowRes" tabindex="-1" href="#">320x240</a></li>
                   <li><a id="midRes" tabindex="-1" href="#">640x480</a></li>
+                  <li><a id="720Res" tabindex="-1" href="#">720x540</a></li>
                   <li><a id="highRes" tabindex="-1" href="#">800x600</a></li>
                 </ul>
               </li>
@@ -61,46 +62,55 @@
               </li>
             </ul>
           </li>
-
-          <!--li><a href="#">Link</a></li-->
         </ul>
+        <!--ul class="nav pull-right">
+          <li class=""><a id="hide-nav" href="javascript:void(0)">Hide <i class="icon-chevron-up"></i></a></li-->
+          <!--li><a href="#">Link</a></li>
+        </ul-->
       </div>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span2">
+      <div class="span1"></div>
+      <div class="sidebar">
+        <a id="hide-images" class="center" style="padding-bottom:5px;" href="javascript:void(0)"><i class="icon-chevron-up"></i> Hide <i class="icon-chevron-up"></i></a>
         <div id="images" class="">
         </div>
       </div>
       <div class="span8" style="position:relative;">
-        <video width="640" height="480" id="video" class="item1 item2" controls> 
+        <video width="720" height="540" id="video" class="item1 item2" controls> 
           <source src="/video/video.ogv"></source>
           <source src="/video/video.mp4"></source>
           <source src="http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/presenterVID/video.ogv"></source>
           <source src="http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/presenterVID/video.mp4"></source>
         </video>
-        <img id="slide" src="" height="180" width="300" class="item1"/>
-        <img id="wboard" src="" height="240" width="300" class="item2"/>
+        <!--img id="slide" src="" height="180" width="300" class="item1"/>
+        <img id="wboard" src="" height="240" width="300" class="item2"/-->
 
-        <input type="text" rows="4" style="width: 620px;"  id="text" placeholder="Text here"></input></br>
+        </br></br>
+        <!--div class="well well-large">
+          <h5>Notes: </h5>
+          <div id="test1"></div>
+          <div id="test2"></div>
+          <div id="output"></div>
+        </div-->
 
+      </div>
+
+      <div class="span3">
+        <textarea type="text" rows="4"   id="text" placeholder="Text here"></textarea></br>
         <a href="javascript:void(0)" id="textbutton" data-original-title="DO THINGS" class="btn btn-primary" type="button">Post</a>
-      </br></br>
-      <div class="well well-large">
+        <br>
         <h5>Notes: </h5>
         <div id="test1"></div>
         <div id="test2"></div>
         <div id="output"></div>
       </div>
-
-    </div>
   </div>
 </div>
 <footer>
-  <div class="container">
-    <p><a href="http://jsfiddle.net/89XTM/1/">Fiddle of what this is supposed to do.</a></p>
-  </div>
+  
 </footer>
 </body>
 </html>

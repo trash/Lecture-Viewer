@@ -11,3 +11,18 @@ a {
 	overflow: auto;
 	height: 100%;
 }
+
+.center {
+	text-align: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.sidebar {
+	position: fixed;
+	height: 800px;
+	left: 0;
+	top: 50px;
+	width: auto;
+}
