@@ -1,5 +1,9 @@
-// create popcorn instance
+//GLOBAL VARS
 var pastTime = 0;
+
+//time in seconds of how much info we want to keep on the screen (notes etc)
+var timeWindow = 300;
+
 var notes = {
     1: "This note corresponds to second 1.",
     3: "I'm all about second 3.",
@@ -44,11 +48,27 @@ $(function(){
     $("a[rel=popover]").popover();
     $("a[rel=tooltip]").tooltip();
 
+    var image_toggle_old = '<i class="icon-chevron-up"></i> Hide <i class="icon-chevron-up"></i>';
+    var image_toggle_new = '<i class="icon-chevron-down"></i> Show <i class="icon-chevron-down"></i>';
+    $("#hide-images").toggle(function() {
+            $("#images").toggle("fast");
+            $("#hide-images").html(image_toggle_new);
+        }, 
+            function() {
+                $("#images").toggle("fast");
+                $("#hide-images").html(image_toggle_old);
+        });
+    
+
     //When Post button is clicked, append the note typed
     $("#textbutton").click(function(){
+        var current = Math.floor($pop.currentTime());
         var text = $("#text").val();
+        $("#text").val('');
         console.log(text);
-        $("#test2").append('<p>@ '+ parseInt($pop.currentTime()) +'(s): ' + text + '</p>');
+        notes[current] = text;
+        console.log(notes[current]);
+        updateOutput();
     });
 
     //Settings resolution change buttons
@@ -59,6 +79,10 @@ $(function(){
     $("#midRes").click(function(){
         $("video").attr("width",640);
         $("video").attr("height",480);
+    });
+    $("#720Res").click(function(){
+        $("#video").attr("width",720);
+        $("#video").attr("height",540);
     });
     $("#highRes").click(function(){
         $("video").attr("width",800);
@@ -78,6 +102,7 @@ $(function(){
         $("#slide").attr("height",600);
     });
 
+    //popcorn instance
     var $pop = Popcorn("#video");
     $("#video").draggable({ grid: [ 80, 80 ] });
     $("#slide").draggable({ grid: [ 40, 40 ] });
@@ -97,6 +122,7 @@ $(function(){
         }, 500);
         lastswitch = 1;
     });
+
 
     $('#wboard').click(function(event) {
         console.log('clicked big board');
@@ -139,9 +165,9 @@ $(function(){
         $( "#wboard" ).attr('src', wb);
     }
     for (var key in wboard){ //generate the sidebar of wboard slides
-        $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'" height="300" width="180"/></div>')
+        $("#images").append('<img class="wboard thumbnail" id="wboard' + key + '" src="'+ 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'" height="250" width="150"/>')
     };
-    $(".wboard").wrap('<a href="javascript:void(0) class="wboardLink" />');//attach the wboard class to the sidebar slides
+    
     //When a wboard image is selected, we update the rest of the content so that it is synced
     $(".wboard").click(function(event){
         console.log("Clicked a wboard image!");
@@ -163,6 +189,22 @@ $(function(){
 
     });
 
+    var updateOutput = function() {
+        $("#output").html('');
+        var current = Math.floor($pop.currentTime());
+        console.log(current);
+        //displays notes from the timeWindow before the current time
+        var start = current-timeWindow;
+        if (start < 0)
+            start = 0;
+        for (var i = start; i < current; i++){
+            if (notes[i]){
+                console.log("note found");
+                $( "#output" ).append('<p><code>@ ' + i + '(s):</code> ' + notes[i] + '</p>');
+            }
+        }
+    };
+
     //trigger a custom event on time interval updates
     $pop.on( "timeupdate", function() {
         //keep track every time a second passes
@@ -176,23 +218,21 @@ $(function(){
         }
     });
 
+    //if the person seeks we update relevant info
+    $pop.on( "seeked", function() {
+        console.log("seeked");
+        updateOutput();
+    });
+
     // listen for custom event and update content
     $pop.on( "secondInterval", function( data ) {
-        //var output = "Wow, it's already been " + data.count +  " second(s) since the video began!";
-        //console.log( "A second has passed!" );
-        //console.log( "name: ", data.name );
-        //console.log( "currentTime(): ", data.count );
-        $( "#test1" ).html(output);
-        if (notes[data.count])
-            $( "#test2" ).append('<p>@ ' + data.count + '(s): ' + notes[data.count] + '</p>');
-        else
-            //$( "#test2" ).append("<p>Note: No note for this timestamp.</p>");
+        //$( "#output" ).html(output);
+        updateOutput();
         if (slides[data.count]){
             var slide = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/scr/' + slides[data.count];
             $( "#slide" ).attr('src', slide);
         }
         if (wboard[data.count]){
-            //var wb = '/images/wbl/' + wboard[data.count];
             var wb = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/' + wboard[data.count];
             $( "#wboard" ).attr('src', wb);
         }       
