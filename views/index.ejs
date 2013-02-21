@@ -67,7 +67,7 @@
     <div class="row-fluid">
       <div class="span1"></div>
       <div class="sidebar">
-        <a id="hide-images" class="center" style="padding-bottom:5px;" href="javascript:void(0)"><i class="icon-chevron-up"></i> Hide <i class="icon-chevron-up"></i></a>
+        <!--a id="hide-images" class="center" style="padding-bottom:5px;" href="javascript:void(0)"><i class="icon-chevron-up"></i> Hide <i class="icon-chevron-up"></i></a-->
         <div id="images" class="">
         </div>
       </div>
@@ -83,10 +83,20 @@
 
         </br></br>
       </div>
-
       <div class="span3">
-        <textarea type="text" rows="4" style="width:250px;"  id="text" placeholder="Type a note..."></textarea></br>
-        <a href="javascript:void(0)" id="textbutton" data-original-title="DO THINGS" class="btn btn-primary btn-large btn-block" type="button">Post</a>
+        <textarea type="text" rows="4" style="width:250px;"  id="text" placeholder="Type a note and press Enter"></textarea></br>
+        <!--a href="javascript:void(0)" id="textbutton" data-original-title="DO THINGS" class="btn btn-primary btn-large btn-block" type="button">Post</a-->
+        <div class="hidden" id="alert-overwrite">
+          <div class="alert alert-block alert-error fade in">
+            <button class="close close-overwrite" type="button">×</button>
+            <h4 class="alert-heading">Warning!</h4>
+            <p>You already have a note stored at this time.</p>
+            <p>
+              <button id="btn-overwrite-note" class="btn btn-danger">Overwite</button>
+              <button class="btn close-overwrite">Cancel</button>
+            </p>
+          </div>
+        </div>
         <div class="notes-container">
           <div id="output"></div>
         </div>

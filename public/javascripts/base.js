@@ -11,11 +11,36 @@ var notes = {
     5: "Second 5 is the best!",
     20: "This application sure is great!"
 };
-var pictures = {
-    1: "http://i.imgur.com/ALPTa.gif",
-    3: "http://i.imgur.com/yjtrk.gif",
-    5: "http://i.imgur.com/puS8V.gif"
-};
+
+var imgur = [
+    "http://i.imgur.com/1vtt9kD.gif",
+    "http://i.imgur.com/rTzKP.gif",
+    "http://i.imgur.com/H0xRO.gif",
+    "http://i.imgur.com/nWRgi.gif",
+    "http://i.imgur.com/t59fs.gif",
+    "http://i.imgur.com/7Qgpf.gif",
+    "http://i.imgur.com/ns8f5.gif",
+    "http://i.imgur.com/TvOeA.gif",
+    "http://i.imgur.com/2nK30.gif",
+    "http://i.imgur.com/gKKbO.gif",
+    "http://i.imgur.com/Rhbx3.gif",
+    "http://i.imgur.com/Q2ehm.gif",
+    "http://i.imgur.com/l3f08.gif",
+    "http://i.imgur.com/poUrb.gif",
+    "http://i.imgur.com/VNHsi.gif",
+    "http://i.imgur.com/nWA8K.gif",
+    "http://i.imgur.com/XU8R8.gif",
+    "http://i.imgur.com/pbhgB.gif",
+    "http://i.imgur.com/LnpVg.gif",
+    "http://i.imgur.com/U6hJx.gif",
+    "http://i.imgur.com/7dB1u.gif",
+    "http://i.imgur.com/rKADe.gif",
+    "http://i.imgur.com/nWWd9.gif",
+    "http://i.imgur.com/iyhsU.gif",
+    "http://i.imgur.com/jHcNl.gif",
+    "http://i.imgur.com/tbHyd.gif",
+    "http://i.imgur.com/uXQtM.gif"
+]
 
 //lists of the content being displayed, this is used to grab the images from either a local dir or remotely
 //time: filename
@@ -45,6 +70,11 @@ var wboard = {
 };
 
 $(function(){
+    var wboard = {};
+    for(var i = 0; i < imgur.length; i++){
+        wboard[i*190] = imgur[i];
+    }
+
     $("a[rel=popover]").popover();
     $("a[rel=tooltip]").tooltip();
 
@@ -59,16 +89,38 @@ $(function(){
                 $("#hide-images").html(image_toggle_old);
         });
     
+    //press enter on text input -> save note
+    $("#text").keypress(function(event) {
+         if ( event.which == 13 ) {
+            if (!event.shiftKey){
+                event.preventDefault();
+                var current = Math.floor($pop.currentTime());
+                if (notes[current] === undefined) {
+                    var text = $("#text").val();
+                    $("#text").val('');
+                    notes[current] = text;
+                    updateOutput();
+                }
+                else
+                    $("#alert-overwrite").show();
+            }
+        }
+    });
 
-    //When Post button is clicked, append the note typed
-    $("#textbutton").click(function(){
+    //overwrite a note in the warning alert
+    $("#btn-overwrite-note").click(function() {
         var current = Math.floor($pop.currentTime());
         var text = $("#text").val();
         $("#text").val('');
-        console.log(text);
         notes[current] = text;
-        console.log(notes[current]);
         updateOutput();
+        $("#alert-overwrite").hide();
+    });
+
+    //cancel overwrite note
+    $(".close-overwrite").click(function() {
+        $("#alert-overwrite").hide();
+        $("#text").focus();
     });
 
     //Settings resolution change buttons
@@ -161,11 +213,12 @@ $(function(){
     }
     if(wboard[0]){
         //var wb = '/images/wbl/' + wboard[0]; //local
-        var wb = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/' + wboard[0]; //remote
+        var wb = wboard[0];//'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/' + wboard[0]; //remote
         $( "#wboard" ).attr('src', wb);
     }
     for (var key in wboard){ //generate the sidebar of wboard slides
-        $("#images").append('<img class="wboard thumbnail" id="wboard' + key + '" src="'+ 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'" height="250" width="150"/>')
+        $("#images").append('<img class="wboard thumbnail" id="wboard' + key + '" src="'+ wboard[key] + '" height="250" width="150"/>')
+        //'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'
     };
     
     //When a wboard image is selected, we update the rest of the content so that it is synced
@@ -189,6 +242,23 @@ $(function(){
 
     });
 
+    var formatTime = function(time) {
+        var hours = Math.floor(time / 3600);
+        var mins = Math.floor(time / 60);
+        var secs = time % 60;
+        var output = '';
+        if (hours>0){
+            mins = mins - hours*60;
+            output = output.concat(hours+'h');
+        }
+        if (mins>0)
+            output = output.concat(mins+'m');
+        if (secs>0)
+            output = output.concat(secs+'s');
+
+        return output;
+    }
+
     var updateOutput = function() {
         $("#output").html('');
         var current = Math.floor($pop.currentTime());
@@ -197,10 +267,11 @@ $(function(){
         var start = current-timeWindow;
         if (start < 0)
             start = 0;
-        for (var i = start; i < current; i++){
+        for (var i = start; i <= current; i++){
             if (notes[i]){
                 console.log("note found");
-                $( "#output" ).append('<p><code>@ ' + i + '(s):</code> ' + notes[i] + '</p>');
+                var output = formatTime(i);
+                $( "#output" ).append('<p><code>'+output+':</code> ' + notes[i] + '</p>');
             }
         }
     };
