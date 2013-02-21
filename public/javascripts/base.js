@@ -64,6 +64,7 @@ $(function(){
     $("#textbutton").click(function(){
         var current = Math.floor($pop.currentTime());
         var text = $("#text").val();
+        $("#text").val('');
         console.log(text);
         notes[current] = text;
         console.log(notes[current]);
@@ -164,9 +165,9 @@ $(function(){
         $( "#wboard" ).attr('src', wb);
     }
     for (var key in wboard){ //generate the sidebar of wboard slides
-        $("#images").append('<div class="scroll-content-item"><img class="wboard thumbnail" id="wboard' + key + '" src="'+ 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'" height="250" width="150"/></div>')
+        $("#images").append('<img class="wboard thumbnail" id="wboard' + key + '" src="'+ 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/preview/' + wboard[key] +'" height="250" width="150"/>')
     };
-    $(".wboard").wrap('<a href="javascript:void(0) class="wboardLink" />');//attach the wboard class to the sidebar slides
+    
     //When a wboard image is selected, we update the rest of the content so that it is synced
     $(".wboard").click(function(event){
         console.log("Clicked a wboard image!");
@@ -189,7 +190,7 @@ $(function(){
     });
 
     var updateOutput = function() {
-        $("#test2").html('');
+        $("#output").html('');
         var current = Math.floor($pop.currentTime());
         console.log(current);
         //displays notes from the timeWindow before the current time
@@ -199,7 +200,7 @@ $(function(){
         for (var i = start; i < current; i++){
             if (notes[i]){
                 console.log("note found");
-                $( "#test2" ).append('<p>@ ' + i + '(s): ' + notes[i] + '</p>');
+                $( "#output" ).append('<p><code>@ ' + i + '(s):</code> ' + notes[i] + '</p>');
             }
         }
     };
@@ -225,18 +226,13 @@ $(function(){
 
     // listen for custom event and update content
     $pop.on( "secondInterval", function( data ) {
-        $( "#test1" ).html(output);
-        /*if (notes[data.count])
-            $( "#test2" ).append('<p>@ ' + data.count + '(s): ' + notes[data.count] + '</p>');
-        else
-            //$( "#test2" ).append("<p>Note: No note for this timestamp.</p>");*/
+        //$( "#output" ).html(output);
         updateOutput();
         if (slides[data.count]){
             var slide = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/scr/' + slides[data.count];
             $( "#slide" ).attr('src', slide);
         }
         if (wboard[data.count]){
-            //var wb = '/images/wbl/' + wboard[data.count];
             var wb = 'http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/wbl/' + wboard[data.count];
             $( "#wboard" ).attr('src', wb);
         }       
