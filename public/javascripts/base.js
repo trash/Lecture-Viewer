@@ -1,3 +1,6 @@
+//trigger the connect for sockets
+var socket = io.connect();
+
 //GLOBAL VARS
 var pastTime = 0;
 
