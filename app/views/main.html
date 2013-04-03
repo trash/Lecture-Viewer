@@ -1,0 +1,26 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span1"></div>
+		<div class="sidebar">
+			<img ng-click="clickImage($index)" ng-repeat="image in images2" title="image: {{$index}} at time: {{$index * 190 | noteTime}}" class="wboard thumbnail" src="{{image.src}}"/>
+		</div>
+		<div class="span8" style="position:relative;">
+			<video width="720" height="540" id="video" controls> 
+				<source src="http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/presenterVID/video.ogv"></source>
+				<source src="http://prussian.cs.umass.edu/media/S11/CompSci453/20110302103319/presenterVID/video.mp4"></source>
+			</video>
+		</div>
+		<div class="span3">
+			<div ng-show="showNotes">
+				<form>
+					<textarea ui-keypress="{'enter':'addNote($event)'}" ng-model="noteInput" type="text" rows="4" style="width:250px;" placeholder="Type a note and press Enter"></textarea></br>
+				</form>
+				<!--alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert-->
+				<div class="notes-container">
+					<p ng-repeat="note in notes | orderBy:'time'"><code>{{note.time | noteTime}}:</code> {{note.content}}</p>
+				</div>
+			</div>
+		</div>
+		<button  ng-click="showNotes = !showNotes" class="btn btn-mini hide-notes" href="#"><i class="icon-chevron-{{showNotes | noteDirection}}"></i></button>
+	</div>
+</div>
