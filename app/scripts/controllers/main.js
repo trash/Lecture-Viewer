@@ -85,6 +85,7 @@ angular.module('lectureApp')
 	$scope.logThis = function () {
 		var text = $scope.searchText;
 		$scope.searchText = '';
+		
 	};
 
 	$scope.clickImage = function (idx) {

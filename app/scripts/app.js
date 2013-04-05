@@ -11,6 +11,10 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
         templateUrl: 'views/select-lecture.html',
         controller: 'SelectLectureCtrl'
       })
+      .when('/splash', {
+        templateUrl: 'views/splash.html',
+        controller: 'SplashCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

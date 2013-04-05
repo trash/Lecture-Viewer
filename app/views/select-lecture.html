@@ -1,7 +1,9 @@
 
-<p class="lead">Search for a lecture:</p><input ng-model="lectureSearch" type="text">
+<p class="lead">Search for a lecture:</p><input ng-model="lectureSearch" type="text" placeholder="Type anything...">
 <hr>
 <pagination num-pages="numberOfPages()" current-page="currentPage"></pagination>
+
+
 <div class="span12">
 	<ul class="thumbnails">
 	  <li ng-repeat="lecture in lectures | filter:lectureSearch | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="span4">
