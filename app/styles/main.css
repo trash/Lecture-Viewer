@@ -108,12 +108,19 @@ a {
     margin-right: auto
 }
 
+.search-text {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  overflow-y: scroll;
+  height: 600px;
+  width: 162px;
+}
+
 .sidebar {
 	position: fixed;
-	height: 800px;
 	left: 0;
-	top: 50px;
-	width: auto;
+	top: 85px;
   overflow-y: scroll;
   height: 600px;
   width: auto;

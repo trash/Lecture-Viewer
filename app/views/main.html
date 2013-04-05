@@ -1,6 +1,9 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span1"></div>
+		<form ng-submit="logThis()" class="search-text">
+			<input ng-model="searchText" type="text" style="width:90%">
+		</form>
 		<div class="sidebar">
 			<img ng-click="clickImage($index)" ng-repeat="image in images2" title="image: {{$index}} at time: {{$index * 190 | noteTime}}" class="wboard thumbnail" src="{{image.src}}"/>
 		</div>

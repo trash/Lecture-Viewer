@@ -7,9 +7,9 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/fat', {
-        templateUrl: 'views/fat.html',
-        controller: 'FatCtrl'
+      .when('/lectures', {
+        templateUrl: 'views/select-lecture.html',
+        controller: 'SelectLectureCtrl'
       })
       .otherwise({
         redirectTo: '/'

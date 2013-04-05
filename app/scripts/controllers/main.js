@@ -82,6 +82,11 @@ angular.module('lectureApp')
 		//stores alerts
 	];
 
+	$scope.logThis = function () {
+		var text = $scope.searchText;
+		$scope.searchText = '';
+	};
+
 	$scope.clickImage = function (idx) {
 		var time = idx * 200;
 		$pop.currentTime(time);

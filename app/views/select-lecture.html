@@ -1,0 +1,23 @@
+
+<p class="lead">Search for a lecture:</p><input ng-model="lectureSearch" type="text">
+<hr>
+<pagination num-pages="numberOfPages()" current-page="currentPage"></pagination>
+<div class="span12">
+	<ul class="thumbnails">
+	  <li ng-repeat="lecture in lectures | filter:lectureSearch | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" class="span4">
+	    <div class="thumbnail">
+	      <img src="{{lecture.image}}">
+	      <div class="caption">
+	      	<dl>
+	      		<dt>Title:</dt>
+	      		<dd>{{lecture.title}}</dd>
+	      		<dt>Professor:</dt>
+	      		<dd>{{lecture.professor}}</dd>
+	      		<dt>Date:</dt>
+	      		<dd>{{lecture.date}}</dd>
+	      	</dl>
+	      </div>
+	    </div>
+	  </li>
+	</ul>
+</div>
