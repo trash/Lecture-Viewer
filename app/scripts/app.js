@@ -4,6 +4,10 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/select-lecture.html',
+        controller: 'SelectLectureCtrl'
+      })
+      .when('/watch/:lecture', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })

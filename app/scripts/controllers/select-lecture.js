@@ -12,6 +12,7 @@ angular.module('lectureApp')
       $scope.professors = [];
       $scope.lectures = [
             {
+                  'id': 1,
             	"title": 'Lecture 1',
                   'class': 'CS666',
             	"professor": 'that guy',
@@ -19,6 +20,7 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 2,
             	"title": 'Lecture 2',
                   'class': 'CS666',
             	"professor": 'nother guy',
@@ -26,6 +28,7 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 3,
             	"title": 'Lecture 3',
                   'class': 'CS666',
             	"professor": 'guy mchenderson',
@@ -33,13 +36,15 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 4,
             	"title": 'Lecture 4',
                   'class': 'CS666',
             	"professor": 'nother guy',
             	"date": '8/23/2343',
             	'image': 'http://placehold.it/300x200'
             },
-            {
+            {     
+                  'id': 5,
             	"title": 'Lecture 5',
                   'class': 'CS666',
             	"professor": 'nother guy',
@@ -47,6 +52,7 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 6,
             	"title": 'Lecture 6',
                   'class': 'CS666',
             	"professor": 'nother guy',
@@ -54,12 +60,14 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 7,
             	"title": 'Lecture 7',
             	"professor": 'that guy',
             	"date": '9/12/9234',
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 8,
             	"title": 'Lecture 8',
                   'class': 'CS666',
             	"professor": 'nother guy',
@@ -67,6 +75,7 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 9,
             	"title": 'Lecture 9',
                   'class': 'CS666',
             	"professor": 'guy mchenderson',
@@ -74,6 +83,7 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
             {
+                  'id': 10,
             	"title": 'Lecture 10',
                   'class': 'CS666',
             	"professor": 'nother guy',

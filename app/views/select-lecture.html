@@ -34,7 +34,9 @@
 	<ul class="thumbnails">
 	  <li ng-repeat="lecture in lectures | filter:lectureSearch | filter:professorSearch | filter:classSearch | filter:titleSearch" class="span4">
 	    <div class="thumbnail">
-	      <img src="{{lecture.image}}">
+	      <a href="#/watch/{{lecture.id}}">
+	      	<img src="{{lecture.image}}">
+	      </a>
 	      <div class="caption">
 	      	<dl>
 	      		<dt>Title:</dt>
