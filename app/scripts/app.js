@@ -7,6 +7,10 @@ angular.module('lectureApp', ['ui','ui.bootstrap'])
         templateUrl: 'views/select-lecture.html',
         controller: 'SelectLectureCtrl'
       })
+      .when('/watch/', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
       .when('/watch/:lecture', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
