@@ -33,7 +33,7 @@
 <div class="span12">
 	<h4 class="center">Click a lecture to watch</h4>
 	<ul class="thumbnails">
-	  <li ng-repeat="lecture in lectures | filter:lectureSearch | filter:professorSearch | filter:classSearch | filter:titleSearch" class="span4">
+	  <li ng-repeat="lecture in lectures | filter:lectureSearch | filter:professorSearch | filter:classSearch | filter:titleSearch | classes:currentUser.classes" class="span4">
 	    <div class="thumbnail">
 	      <a href="#/watch/{{lecture.id}}">
 	      	<img src="{{lecture.image}}">

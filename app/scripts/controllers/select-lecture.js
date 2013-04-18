@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('lectureApp')
-.controller('SelectLectureCtrl', function ($scope) {
+.controller('SelectLectureCtrl', function ($scope, lecture) {
+      $scope.currentUser = lecture.currentUser();
   	$scope.pageSize = 6;
   	$scope.numberOfPages = function () {
         return Math.ceil($scope.lectures.length/$scope.pageSize);                
       }
   	$scope.currentPage = 0;
 
+      $scope.currentYear = 2013;
       $scope.profMap = {};
       $scope.professors = [];
       $scope.lectures = [

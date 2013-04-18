@@ -24,49 +24,29 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="navbar" class="navbar navbar-fixed-top" style="position: absolute;">
+    <div ng-controller="NavCtrl" class="navbar navbar-fixed-top" style="position: absolute;">
     <div class="navbar-inner">
       <div class="container" style="width: auto; padding: 0 20px;">
         <a class="brand" href="#/splash">Lecture Viewer</a>
         <ul class="nav">
           <li><a href="#/lectures">Find</a></li>
           <li><a href="#/watch">Watch</a></li>
-
-          <!--li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Settings
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-              <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Video Resolution</a>
-                <ul class="dropdown-menu">
-                  <li><a id="lowRes" tabindex="-1" href="#">320x240</a></li>
-                  <li><a id="midRes" tabindex="-1" href="#">640x480</a></li>
-                  <li><a id="720Res" tabindex="-1" href="#">720x540</a></li>
-                  <li><a id="highRes" tabindex="-1" href="#">800x600</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Slide Resolution</a>
-                <ul class="dropdown-menu">
-                  <li><a id="slowRes" tabindex="-1" href="#">320x240</a></li>
-                  <li><a id="smidRes" tabindex="-1" href="#">640x480</a></li>
-                  <li><a id="shighRes" tabindex="-1" href="#">800x600</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li-->
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <a ng-show="currentUser" href="#/splash">Login</a>
+            <a ng-show="currentUser" href="javascript:void(0)">Welcome, {{currentUser}}</a>
+          </li>
         </ul>
       </div>
     </div>
-  </div>
+    </div>
     <div ng-view></div>
 
     <script src="components/angular/angular.js"></script>
     <script type="text/javascript" src="components/angular-ui/build/angular-ui.js"></script>
     <script src="components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
-    <script type="text/javascript" src="http://cdn.popcornjs.org/code/dist/popcorn.js"></script>
+    <script type="text/javascript" src="components/popcornjs/popcorn.js"></script>
 
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
@@ -76,6 +56,9 @@
     <script src="scripts/controllers/select-lecture.js"></script>
     <script src="scripts/filters/startFrom.js"></script>
     <script src="scripts/controllers/splash.js"></script>
+    <script src="scripts/services/lecture.js"></script>
+    <script src="scripts/controllers/Nav.js"></script>
+    <script src="scripts/filters/classes.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

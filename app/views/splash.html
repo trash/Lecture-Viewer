@@ -1,11 +1,31 @@
-<div class="hero-unit">
-  <h1>Lecture Viewer</h1>
-  <hr>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ullamcorper luctus bibendum. Aliquam adipiscing turpis non massa tempor ac cursus lacus aliquet. Nunc dignissim, lorem vel lacinia auctor, orci felis ultrices dolor, et venenatis neque lorem vel massa. Nulla facilisi. Suspendisse vitae quam neque. Donec varius massa augue, vitae vulputate risus. In sit amet purus urna, quis consectetur diam. Suspendisse hendrerit diam sed lorem suscipit lobortis.</p>
-  <hr>
-  <p>
-    <a href="#/" class="btn btn-primary btn-large">
-      Get Started!
-    </a>
-  </p>
+<div class="span8">
+	<div class="hero-unit">
+		<h1>Lecture Viewer</h1>
+		<hr>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ullamcorper luctus bibendum. Aliquam adipiscing turpis non massa tempor ac cursus lacus aliquet. </p>
+		<hr>
+	</div>
+</div>
+<div class="span3 offset1 well">
+	<div ng-show="currentUser">
+		<span class="text-info">Logged in as:</span>
+		<p class="lead">{{currentUser.email}}<p>
+		<hr>
+		<button ng-click="logout()" class="btn btn-primary">Logout</button>
+	</div>
+	<form ng-show="!currentUser" class="form-horizontal">
+		<fieldset>
+			<legend>Login</legend>
+			<p class="text-error">{{errorText}}</p>
+			<div class="control-group">
+				<input ng-model="email" type="email" placeholder="Email" required>
+			</div>
+			<div class="control-group">
+				<input ng-model="password" type="password" placeholder="Password" required>
+			</div>
+			<div class="control-group">
+				<button ng-click="login()" type="submit" class="btn btn-primary">Sign In</button>
+			</div>
+		</fieldset>
+	</form>
 </div>
