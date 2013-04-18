@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('lectureApp')
-.controller('MainCtrl', function ($scope) {
+.controller('MainCtrl', function ($scope, $rootScope) {
 	var $pop = Popcorn("#video");
+	$pop.play();
 
 	$scope.showNotes = true;
 
