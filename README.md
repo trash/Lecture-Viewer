@@ -8,7 +8,7 @@ Alternatively you can do as follows to setup (after cloning):
 * Globally install yo/grunt/bower: `npm install -g yo grunt-cli bower`
 * Install node_modules: `npm install`
 * Install packages: `bower install`
-* *  Note: This should br run through a shell that has the git command.
+* *  Note: This should be run through a shell that has the git command.
 * Install Ruby: `sudo apt-get install ruby` for Ubuntu and http://rubyinstaller.org/ for Windows.
 * Install Compass: `gem update --system && gem install compass`
 * Run test server: `grunt server`
