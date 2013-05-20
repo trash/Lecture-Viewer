@@ -1,5 +1,7 @@
 'use strict';
 
+//This filter takes a list of classes, classes, and a user's registered classes, userClasses, and returns an filtered list of classes that match userClasses
+
 angular.module('lectureApp')
   .filter('classes', function () {
     return function (classes, userClasses) {

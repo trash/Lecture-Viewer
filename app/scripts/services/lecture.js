@@ -1,5 +1,7 @@
 'use strict';
 
+//This is the main service for the application. It should be the single source for data, and should serve as the model
+
 angular.module('lectureApp')
   .factory('lecture', function () {
     var loggedIn = false;

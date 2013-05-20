@@ -1,17 +1,24 @@
 'use strict';
 
+//THIS IS THE CONTROLLER FOR THE LECTURE SELECT PAGE/VIEW
+
 angular.module('lectureApp')
 .controller('SelectLectureCtrl', function ($scope, lecture) {
       $scope.currentUser = lecture.currentUser();
+
+      //Pagination variables
   	$scope.pageSize = 6;
   	$scope.numberOfPages = function () {
         return Math.ceil($scope.lectures.length/$scope.pageSize);                
       }
   	$scope.currentPage = 0;
 
+      //used to filter by current year
       $scope.currentYear = 2013;
+
       $scope.profMap = {};
       $scope.professors = [];
+      //list of lecture objects that will be displayed
       $scope.lectures = [
             {
                   'id': 1,
@@ -233,7 +240,9 @@ angular.module('lectureApp')
             	'image': 'http://placehold.it/300x200'
             },
       ];
+
       //takes a property of a lecture (professor, title) and returns a non-repeating list of it's values for lectures
+      //used for typeahead
       var typeaheadList = function (property) {
             var hashMap = {};
             var list = [];

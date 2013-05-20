@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "dependencies": {
     "generator-angular": "~0.2.0",
-    "generator-karma": "~0.2.0"
+    "generator-karma": "~0.2.0",
+    "express": "3.x",
+    "ejs": "~0.8.3"
   },
   "devDependencies": {
     "grunt": "0.4.0rc7",
@@ -29,6 +31,7 @@
     "grunt-ngmin": "~0.0.1"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": "0.8.x",
+    "npm": "1.1.x"
   }
 }

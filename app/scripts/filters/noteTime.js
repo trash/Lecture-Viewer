@@ -1,5 +1,7 @@
 'use strict';
 
+//Filter that takes a time in seconds and filters it to the format '12h34m56s'
+
 angular.module('lectureApp')
   .filter('noteTime', function () {
     return function(time) {

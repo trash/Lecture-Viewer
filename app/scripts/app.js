@@ -1,5 +1,7 @@
 'use strict';
 
+//This is the angular app declaration that handles coupling views with controllers, routing, and modules
+
 angular.module('lectureApp', ['ui','ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
