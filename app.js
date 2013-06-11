@@ -16,19 +16,38 @@ app.configure(function(){
   app.set('views', __dirname + '/app');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
-  app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
-  app.use(express.session());
-  app.use(app.router);
-  app.use('/app', express.static(__dirname + '/app'));
-  app.use(express.static(path.join(__dirname, '/app')));
 });
 
 app.engine('html', require('ejs').renderFile);
 
 app.configure('development', function(){
+  // Configuration for development environments.
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
+  app.use(app.router);
+  app.use('/app', express.static(__dirname + '/app'));
+  app.use(express.static(path.join(__dirname, '/app')));
+  app.use(express.logger('dev'));
+  app.use(express.errorHandler({ dumpExceptions : true,
+                                 showStack: true }));
+});
+
+app.configure('production', function(){
+  // Configuration for production environments.
+  var RedisStore = require('connect-redis')(express);
+  var sessionStore = new RedisStore();
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session({
+    secret: 'LectureViewer',
+    store : sessionStore,
+    key   : 'lectureview.sid'
+  }));
+  app.use(app.router);
+  app.use('/app', express.static(__dirname + '/app'));
+  app.use(express.static(path.join(__dirname, '/app')));
+  app.use(express.logger('default'));
   app.use(express.errorHandler());
 });
 
